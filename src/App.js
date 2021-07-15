@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import { useState } from "react";
+import ComponenteFilho from './components/ComponenteFilho'
+
 import './App.css';
 
 function App() {
+  const [estadoPai, setEstadoPai] = useState('nao clicou');
+  const [estadoFilho, setEstadoFilho] = useState('nao clicou');
+  const handleClick = () => {
+    setEstadoFilho('clicou')
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Botão localizado no componente filho {estadoPai}</h1>
+      <button onClick={handleClick}>Clique aqui para alterar o componente filho</button>
+      <ComponenteFilho
+        setEstadoPai={setEstadoPai}
+        estadoFilho={estadoFilho}
+      />
     </div>
   );
 }
